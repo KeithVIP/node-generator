@@ -63,7 +63,7 @@ return inquirer.prompt([
             type: 'checkbox',
             name: 'license',
             message: "What license should be assigned to the project?",
-            license: ['MIT', 'APACHE', 'BOOST', 'BSD', 'ECLIPSE', 'GNU'],
+            choices: ['MIT', 'APACHE', 'BOOST', 'BSD', 'ECLIPSE', 'GNU'],
             default: ['GNU'],
             validate: licenseInput => {
                 if (licenseInput) {
@@ -119,7 +119,7 @@ return inquirer.prompt([
             type: 'checkbox',
             name: 'test',
             message: 'What command should be run to run tests?',
-            choices: [],
+            choices: ['npm test'],
             default: ['npm test'],
             validate: testInput => {
                 if (testInput) {
@@ -135,8 +135,8 @@ return inquirer.prompt([
 
 
 // TODO: Create a function to write README file
-const writeToFile = data => {
-    fs.writeToFile('README.md', data, err => {
+const writeFile = (data) => {
+    fs.writeFile('README.md', data, err => {
         if (err) {
             console.log(err);
             return;
@@ -148,23 +148,15 @@ const writeToFile = data => {
 
 // TODO: Create a function to initialize app
 questions()
-  .then(promptProject)
-  .then(portfolioData => {
-    return generatePage(portfolioData);
+  .then(answers => {
+      return generateMarkdown(answers);
   })
-  .then(pageHTML => {
-    return writeToFile(pageHTML);
-  })
-  .then(writeFileResponse => {
-    console.log(writeFileResponse);
-    return copyFile();
-  })
-  .then(copyFileResponse => {
-    console.log(copyFileResponse);
+  .then(data => {
+      return writeFile(data);
   })
   .catch(err => {
-    console.log(err);
-  });
+      console.log(err)
+  })
 
 // Function call to initialize app
 //init();
