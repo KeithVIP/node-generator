@@ -125,7 +125,7 @@ return inquirer.prompt([
                 if (testInput) {
                     return true;
                 } else {
-                    console.log('Please enter a command!');
+                    console.log('Please enter a test input!');
                     return false;
                 }
             }
