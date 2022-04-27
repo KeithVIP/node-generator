@@ -8,6 +8,19 @@ const questions = () => {
     return inquirer.prompt([
         {
             type: 'input',
+            name: 'title',
+            message: "What is the name of your project?",
+            validate: titleInput => {
+                if (titleInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your Project name');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
             name: 'userName',
             message: "What is your Github Username?",
             validate: userNameInput => {
@@ -28,19 +41,6 @@ const questions = () => {
                     return true;
                 } else {
                     console.log('Please enter your email address!');
-                    return false;
-                }
-            }
-        },
-        {
-            type: 'input',
-            name: 'title',
-            message: "What is the name of your project?",
-            validate: titleInput => {
-                if (titleInput) {
-                    return true;
-                } else {
-                    console.log('Please enter your Project name');
                     return false;
                 }
             }
@@ -102,6 +102,20 @@ const questions = () => {
             }
         },
         {
+            type: 'input',
+            name: 'contributors',
+            message: 'What does the user need to know about contributing to the repo?',
+            validate: (contributionInput) => {
+                if (contributionInput) {
+                    return true;
+                } else {
+                    console.log('Please enter guidelines for contribution!')
+                    return false;
+        
+                }
+            }
+        },
+        {
             type: 'checkbox',
             name: 'test',
             message: 'What command should be run to run tests?',
@@ -116,26 +130,21 @@ const questions = () => {
                 }
             }
         },
-        {
-            type: 'input',
-            name: 'contributors',
-            message: 'What does the user need to know about contributing to the repo?',
-        }
     ])
 };
 
 
 // TODO: Create a function to write README file
-//const writeToFile = data => {
-    //fs.writeToFile('README.md', data, err => {
-        //if (err) {
-            //console.log(err);
-            //return;
-        //} else {
+const writeToFile = data => {
+    fs.writeToFile('README.md', data, err => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
             console.log("README created!")
-        //}
-    //})
-//};
+        }
+    })
+};
 
 // TODO: Create a function to initialize app
 questions()
