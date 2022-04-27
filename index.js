@@ -4,8 +4,8 @@ const inquirer = require('inquirer');
 const generateMarkdown = require('./utils/generateMarkdown')
 
 // TODO: Create an array of questions for user input
-const questions = () => {
-    return inquirer.prompt([
+function questions() {
+return inquirer.prompt([
         {
             type: 'input',
             name: 'title',
@@ -103,7 +103,7 @@ const questions = () => {
         },
         {
             type: 'input',
-            name: 'contributors',
+            name: 'contribution',
             message: 'What does the user need to know about contributing to the repo?',
             validate: (contributionInput) => {
                 if (contributionInput) {
@@ -153,7 +153,7 @@ questions()
     return generatePage(portfolioData);
   })
   .then(pageHTML => {
-    return writeFile(pageHTML);
+    return writeToFile(pageHTML);
   })
   .then(writeFileResponse => {
     console.log(writeFileResponse);
@@ -167,4 +167,4 @@ questions()
   });
 
 // Function call to initialize app
-init();
+//init();
