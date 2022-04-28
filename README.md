@@ -1,4 +1,8 @@
-https://drive.google.com/file/d/1OahbUUN4oJXUHP5tLM2pacJRFZ9EgqpJ/view
+# VIDEO WALKTHROUGH BELOW:
+
+https://user-images.githubusercontent.com/97990096/165651554-0e7bb6dc-24ab-4b4a-bb18-31fe6403b9a1.mp4
+
+
 
 # Node-Challenge 
   
