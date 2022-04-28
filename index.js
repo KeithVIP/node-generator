@@ -1,10 +1,11 @@
 // TODO: Include packages needed for this application
 const fs = require('fs');
 const inquirer = require('inquirer');
-const generateMarkdown = require('./utils/generateMarkdown')
+const generateMarkdown = require('./utils/generateMarkdown');
+const badge = 'https://img.shields.io/badge/license-${data.license}-blueviolet';
 
 // TODO: Create an array of questions for user input
-function questions() {
+const questions = () => {
 return inquirer.prompt([
         {
             type: 'input',
@@ -64,15 +65,6 @@ return inquirer.prompt([
             name: 'license',
             message: "What license should be assigned to the project?",
             choices: ['MIT', 'APACHE', 'BOOST', 'BSD', 'ECLIPSE', 'GNU'],
-            default: ['GNU'],
-            validate: licenseInput => {
-                if (licenseInput) {
-                    return true;
-                } else {
-                    console.log('Please choose a license!');
-                    return false;
-                }
-            }
 
         },
         {
@@ -119,17 +111,8 @@ return inquirer.prompt([
             type: 'checkbox',
             name: 'test',
             message: 'What command should be run to run tests?',
-            choices: ['npm test'],
-            default: ['npm test'],
-            validate: testInput => {
-                if (testInput) {
-                    return true;
-                } else {
-                    console.log('Please enter a test input!');
-                    return false;
-                }
+            choices: ['npm test']
             }
-        },
     ])
 };
 
